@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "porch",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-01-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "logs": {
+      "enabled": true
+    }
+  }
+  // Phase 2: Add CF_ACCESS_AUD secret
+  // Phase 2: Add SYBIL_CACHE, AGREEMENTS KV bindings
+  // Phase 3: Add IDENTITY_MAP KV, HATS_SUBGRAPH_URL secret
+}

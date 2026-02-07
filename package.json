@@ -1,0 +1,22 @@
+{
+  "name": "@superbenefit/porch",
+  "version": "0.1.0",
+  "description": "MCPorch - SuperBenefit MCP Server Framework Reference Implementation",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "types": "wrangler types src/env.d.ts --include-runtime false"
+  },
+  "dependencies": {
+    "agents": "^0.3.6",
+    "hono": "^4.0.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.0.0",
+    "typescript": "^5.0.0",
+    "wrangler": "^3.91.0"
+  }
+}
