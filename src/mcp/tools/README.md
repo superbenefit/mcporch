@@ -10,6 +10,19 @@ Every tool MUST:
 
 This pattern ensures consistent authentication and authorization across all tools.
 
+## Input Validation Convention
+
+All string parameters MUST include a `.max()` constraint to prevent abuse via oversized inputs. Use appropriate limits based on the parameter's purpose:
+
+```typescript
+// Examples
+z.string().max(1000)             // General text input
+z.string().max(200)              // Short identifiers or names
+z.string().max(100).regex(/.../) // Constrained format strings
+```
+
+Never accept unbounded strings — even with Cloudflare's request body limits, explicit validation provides defense in depth and clear error messages.
+
 ## Step-by-Step: Add a New Tool
 
 ### Step 1: Create the Tool File
@@ -26,7 +39,7 @@ export function registerMyTool(server: McpServer, env: Env) {
   server.tool(
     'my_tool',
     'Description of what this tool does',
-    { param: z.string().describe('Parameter description') },
+    { param: z.string().max(1000).describe('Parameter description') },
     async ({ param }) => {
       // Step 1: Resolve authentication context
       const authContext = await resolveAuthContext(env);

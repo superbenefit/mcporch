@@ -5,7 +5,7 @@ import { registerTools } from './tools/index.js';
  * Factory function to create a new McpServer instance.
  *
  * CRITICAL: Must be called per-request (MCP SDK >= 1.26.0 security requirement).
- * See CVE GHSA-qgp8-v765-qxx9 - sharing McpServer instances across requests
+ * See GHSA-345p-7cg4-v4c7 (CVE-2026-25536) - sharing McpServer instances across requests
  * can leak response data between clients.
  */
 export function createMcpServer(env: Env): McpServer {

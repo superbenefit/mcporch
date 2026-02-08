@@ -11,7 +11,7 @@ export function registerPingTool(server: McpServer, env: Env) {
   server.tool(
     'ping',
     'Returns pong - useful for testing connectivity',
-    { message: z.string().optional().describe('Optional message to echo back') },
+    { message: z.string().max(1000).optional().describe('Optional message to echo back') },
     async ({ message }) => {
       // Every tool MUST call resolveAuthContext + checkTierAccess
       const authContext = await resolveAuthContext(env);
