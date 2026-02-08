@@ -1,5 +1,6 @@
 interface Env {
-  // Phase 1: No bindings required - all tools are Open tier
+  // Phase 1: Rate limiting
+  RATE_LIMITER: RateLimit;
 
   // Phase 2: Authentication
   // CF_ACCESS_AUD: string;
