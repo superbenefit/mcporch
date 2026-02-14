@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { resolveAuthContext } from '../../auth/resolve.js';
-import { checkTierAccess } from '../../auth/check.js';
+import { resolveAuthContext } from '../../../auth/resolve.js';
+import { checkTierAccess } from '../../../auth/check.js';
 
 /**
  * Register the ping tool - useful for testing connectivity.

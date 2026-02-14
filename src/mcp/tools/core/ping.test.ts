@@ -42,7 +42,7 @@ describe('ping tool input validation', () => {
 describe('ping tool tier denial', () => {
   it('checkTierAccess denies open-tier tool for insufficient tier', async () => {
     // Import dynamically to avoid issues with Workers types
-    const { checkTierAccess } = await import('../../auth/check.js');
+    const { checkTierAccess } = await import('../../../auth/check.js');
     const result = checkTierAccess('public', {
       identity: null,
       tier: 'open',
