@@ -1,6 +1,27 @@
 import type { AuthContext, Identity } from './types.js';
 // Phase 2: import { getMcpAuthContext } from 'agents/mcp';
 
+// ---------------------------------------------------------------------------
+// Porch environment contract
+// ---------------------------------------------------------------------------
+
+/**
+ * Minimum environment bindings required by the porch auth framework.
+ * Consumer Workers extend this with their own domain-specific bindings.
+ */
+export interface PorchEnv {
+  RATE_LIMITER: RateLimit;
+  // Phase 2: CF_ACCESS_AUD: string;
+  // Phase 2: SYBIL_CACHE: KVNamespace;
+  // Phase 2: AGREEMENTS: KVNamespace;
+  // Phase 3: IDENTITY_MAP: KVNamespace;
+  // Phase 3: HATS_SUBGRAPH_URL: string;
+}
+
+// ---------------------------------------------------------------------------
+// Auth resolution
+// ---------------------------------------------------------------------------
+
 /**
  * Resolve access context from the current request.
  *
@@ -13,7 +34,7 @@ import type { AuthContext, Identity } from './types.js';
  * This function is the ONLY place tier resolution logic lives.
  * Tools never resolve tiers themselves.
  */
-export async function resolveAuthContext(_env: Env): Promise<AuthContext> {
+export async function resolveAuthContext<E extends PorchEnv>(_env: E): Promise<AuthContext> {
   // --- Phase 2: Authentication ---
   // const mcpAuth = getMcpAuthContext();
   // if (!mcpAuth?.props?.sub) {

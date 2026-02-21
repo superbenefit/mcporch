@@ -10,7 +10,13 @@
     "types": "wrangler types src/env.d.ts --include-runtime false",
     "test": "vitest run"
   },
+  "exports": {
+    "./auth": "./src/auth/index.ts",
+    "./security": "./src/security.ts",
+    "./test-utils": "./src/test-utils.ts"
+  },
   "dependencies": {
+    "@hono/zod-openapi": "^1.2.0",
     "agents": "^0.3.6",
     "hono": "^4.11.8",
     "zod": "^4.3.6"

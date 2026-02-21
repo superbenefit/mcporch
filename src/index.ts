@@ -1,21 +1,7 @@
 import { createMcpHandler } from 'agents/mcp';
 import { createMcpServer } from './mcp/server.js';
 import { honoApp } from './api/app.js';
-
-/**
- * Security headers applied to all MCP responses.
- * The Hono app handles its own headers via secureHeaders() middleware.
- */
-const SECURITY_HEADERS: Record<string, string> = {
-  'X-Content-Type-Options': 'nosniff',
-  'X-Frame-Options': 'DENY',
-  'Referrer-Policy': 'strict-origin-when-cross-origin',
-  'Cross-Origin-Embedder-Policy': 'require-corp',
-  'Cross-Origin-Opener-Policy': 'same-site',
-  'Cross-Origin-Resource-Policy': 'same-site',
-  'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
-  'Content-Security-Policy': "default-src 'none'",
-};
+import { SECURITY_HEADERS } from './security.js';
 
 /**
  * MCPorch fetch handler with route split.

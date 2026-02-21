@@ -1,4 +1,5 @@
 import type { AccessTier, AuthContext } from './auth/types.js';
+import type { PorchEnv } from './auth/resolve.js';
 
 /**
  * Create a minimal AuthContext for testing.
@@ -10,13 +11,14 @@ export function makeAuthContext(tier: AccessTier): AuthContext {
 
 /**
  * Create a mock Env object for testing.
- * Provides minimal stubs for all bindings; override as needed.
+ * Provides minimal stubs for all PorchEnv bindings; override as needed.
+ * Generic so consumers can pass their own extended Env type.
  */
-export function makeMockEnv(overrides?: Partial<Env>): Env {
+export function makeMockEnv<E extends PorchEnv>(overrides?: Partial<E>): E {
   return {
     RATE_LIMITER: {
       limit: async () => ({ success: true }),
     } as unknown as RateLimit,
     ...overrides,
-  } as Env;
+  } as E;
 }

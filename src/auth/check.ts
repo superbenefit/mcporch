@@ -1,7 +1,7 @@
 import type { AccessTier, AuthContext } from './types.js';
 import { TIER_LEVEL } from './types.js';
 
-type AccessResult =
+export type AccessResult =
   | { allowed: true; authContext: AuthContext }
   | { allowed: false; requiredTier: AccessTier; currentTier: AccessTier };
 
