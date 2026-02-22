@@ -22,6 +22,19 @@ app.onError((err, c) => {
   return c.json({ error: 'Internal Server Error' }, 500);
 });
 
+// Root info endpoint
+app.get('/', (c) => {
+  return c.json({
+    name: 'MCPorch',
+    version: '0.1.0',
+    description: 'SuperBenefit MCP Server Framework',
+    endpoints: {
+      mcp: '/mcp',
+      health: '/api/v1/health',
+    },
+  });
+});
+
 // Health check endpoint
 app.get('/api/v1/health', (c) => {
   return c.json({ status: 'ok', tier: 'open' });
