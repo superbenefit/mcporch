@@ -14,8 +14,16 @@ interface HealthResponse {
 }
 
 describe('GET /', () => {
-  it('returns server info JSON', async () => {
+  it('returns HTML landing page for browsers', async () => {
     const res = await honoApp.request('/');
+    expect(res.status).toBe(200);
+    const text = await res.text();
+    expect(text).toContain('<!doctype html>');
+    expect(text).toContain('MCPorch');
+  });
+
+  it('returns JSON when Accept: application/json', async () => {
+    const res = await honoApp.request('/', { headers: { Accept: 'application/json' } });
     expect(res.status).toBe(200);
     const json = (await res.json()) as InfoResponse;
     expect(json.name).toBe('MCPorch');
